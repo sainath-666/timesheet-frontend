@@ -64,31 +64,27 @@ export function AppShell({
         </nav>
 
         <div className="mt-6 border-t border-slate-800 pt-4 text-xs text-slate-500">
-          Logged in as <span className="font-medium">Sai</span>
+          Demo user • no real auth yet
         </div>
       </aside>
 
-      {/* Main content */}
+      {/* Main */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
         <header className="h-16 border-b border-slate-800 flex items-center justify-between px-6 bg-slate-950/60 backdrop-blur">
           <div>
-            <h1 className="text-lg font-semibold">
-              Timesheet Dashboard
-            </h1>
+            <h1 className="text-lg font-semibold">Timesheet Dashboard</h1>
             <p className="text-xs text-slate-400">
-              Track your hours and approvals.
+              Track hours, submissions, and approvals.
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-400">Good day, Sai 👋</span>
-            <div className="h-9 w-9 rounded-full bg-slate-700 flex items-center justify-center text-xs">
-              SR
+          <div className="flex items-center gap-3 text-xs text-slate-400">
+            <span>Demo mode</span>
+            <div className="h-8 w-8 rounded-full bg-slate-700 flex items-center justify-center text-[10px]">
+              TS
             </div>
           </div>
         </header>
 
-        {/* Content */}
         <main className="flex-1 p-6 bg-gradient-to-b from-slate-950 to-slate-900">
           {children}
         </main>

@@ -1,9 +1,5 @@
 import { AppShell } from "@/components/layout/AppShell";
-import {
-  employeeDashboardSummary,
-  employeeTimesheets,
-  TimesheetStatus,
-} from "@/data/mockData";
+import { employeeTimesheets, TimesheetStatus } from "@/data/mockData";
 
 function StatusBadge({ status }: { status: TimesheetStatus }) {
   const base = "px-2 py-1 rounded-full text-xs font-medium";
@@ -35,60 +31,20 @@ function StatusBadge({ status }: { status: TimesheetStatus }) {
   }
 }
 
-export default function DashboardPage() {
-  const summary = employeeDashboardSummary;
-  const recent = employeeTimesheets.slice(0, 3);
-
+export default function TimesheetsListPage() {
   return (
     <AppShell role="EMPLOYEE">
-      {/* Summary cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
-          <div className="text-xs text-slate-400 mb-1">This Week</div>
-          <div className="text-lg font-semibold mb-1">{summary.weekRange}</div>
-          <div className="text-3xl font-bold text-primary">
-            {summary.totalHoursThisWeek}h
-          </div>
-          <div className="text-xs text-slate-500 mt-1">
-            Total logged hours this week
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
-          <div className="text-xs text-slate-400 mb-1">Pending</div>
-          <div className="text-3xl font-bold text-amber-400">
-            {summary.pendingTimesheets}
-          </div>
-          <div className="text-xs text-slate-500 mt-1">
-            Timesheets waiting for approval
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
-          <div className="text-xs text-slate-400 mb-1">Approved</div>
-          <div className="text-3xl font-bold text-emerald-400">
-            {summary.approvedTimesheets}
-          </div>
-          <div className="text-xs text-slate-500 mt-1">
-            Approved timesheets total
-          </div>
-        </div>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-semibold">My Timesheets</h1>
+        <a
+          href="/timesheets/new"
+          className="text-xs px-3 py-1.5 rounded-lg bg-primary text-primary-foreground hover:opacity-90"
+        >
+          + New Timesheet
+        </a>
       </div>
 
-      {/* Recent timesheets */}
       <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-slate-100">
-            Recent Timesheets
-          </h2>
-          <a
-            href="/timesheets/new"
-            className="text-xs px-3 py-1.5 rounded-lg bg-primary text-primary-foreground hover:opacity-90"
-          >
-            + New Timesheet
-          </a>
-        </div>
-
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -101,7 +57,7 @@ export default function DashboardPage() {
               </tr>
             </thead>
             <tbody>
-              {recent.map((ts) => (
+              {employeeTimesheets.map((ts) => (
                 <tr
                   key={ts.id}
                   className="border-b border-slate-900 hover:bg-slate-800/60 transition"
@@ -119,7 +75,7 @@ export default function DashboardPage() {
                       href={`/timesheets/${ts.id}`}
                       className="text-xs px-2 py-1 rounded-lg border border-slate-700 text-slate-200 hover:bg-slate-800"
                     >
-                      View
+                      View / Edit
                     </a>
                   </td>
                 </tr>
