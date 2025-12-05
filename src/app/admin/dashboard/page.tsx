@@ -1,36 +1,47 @@
 import { AppShell } from "@/components/layout/AppShell";
-import { adminDashboardSummary } from "@/data/mockData";
+import { StatsCards } from "@/components/dashboard/StatsCards";
+import { OverviewChart } from "@/components/dashboard/OverviewChart";
+import { ProjectDistribution } from "@/components/dashboard/ProjectDistribution";
+import { RecentActivity } from "@/components/dashboard/RecentActivity";
+import { TopEmployees } from "@/components/dashboard/TopEmployees";
 
 export default function AdminDashboardPage() {
-  const summary = adminDashboardSummary;
-
   return (
     <AppShell role="ADMIN">
-      <div className="grid gap-4 md:grid-cols-3 mb-6">
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <p className="text-xs text-slate-400 mb-1">Employees</p>
-          <p className="text-3xl font-bold text-slate-100">
-            {summary.totalEmployees}
-          </p>
+      <div className="flex flex-col space-y-8 pb-8">
+        {/* Header Section */}
+        <div className="flex items-center justify-between space-y-2">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-100">
+              Dashboard
+            </h2>
+            <p className="text-slate-400">
+              Overview of your team&apos;s performance and project status.
+            </p>
+          </div>
+          <div className="flex items-center space-x-2">
+            {/* Add DateRangePicker or similar controls here if needed */}
+            <span className="text-sm text-slate-500 bg-slate-900/50 px-3 py-1 rounded-full border border-slate-800">
+              Last Updated: Just now
+            </span>
+          </div>
         </div>
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <p className="text-xs text-slate-400 mb-1">Hours (This Week)</p>
-          <p className="text-3xl font-bold text-primary">
-            {summary.totalHoursThisWeek}h
-          </p>
+
+        {/* Stats Row */}
+        <StatsCards />
+
+        {/* Charts Row */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+          <OverviewChart />
+          <ProjectDistribution />
         </div>
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <p className="text-xs text-slate-400 mb-1">Pending Timesheets</p>
-          <p className="text-3xl font-bold text-amber-400">
-            {summary.pendingTimesheets}
-          </p>
+
+        {/* Lists Row */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+          <TopEmployees />
+          <RecentActivity />
         </div>
       </div>
-
-      <p className="text-xs text-slate-400">
-        This is just a sample admin dashboard. Below we’ll use the "All
-        Timesheets" page for approvals.
-      </p>
     </AppShell>
   );
 }
